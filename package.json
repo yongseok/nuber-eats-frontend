@@ -21,6 +21,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "apollo:codegen": "graphql-codegen",
     "tailwind:build": "npx tailwindcss-cli@latest build -i src/styles/tailwind.css -o src/styles/styles.css",
     "tailwind:start": "npm run tailwind:build & react-scripts start",
     "start": "react-scripts start",
@@ -47,7 +48,11 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@types/graphql": "^14.5.0",
     "@types/react-router-dom": "^5.3.3",
+    "apollo": "^2.34.0",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.28",
     "tailwindcss": "^3.3.3"
