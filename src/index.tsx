@@ -4,26 +4,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { client } from './apollo';
 import { ApolloProvider } from '@apollo/client';
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <div>[router]-Hello world!</div>,
-  },
-  {
-    path: '/logout',
-    element: <div>[router]-logout</div>,
-  },
-]);
+import './styles/styles.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
