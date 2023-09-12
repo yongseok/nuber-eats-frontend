@@ -2,6 +2,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { gql } from '../__generated__';
 import { useMutation } from '@apollo/client';
+import {
+  BananaMutation,
+  BananaMutationVariables,
+} from '../__generated__/graphql';
+import { LOCALSTORAGE_TOKEN } from '../constants';
+import { isLoggedInVar } from '../apollo';
 
 const LOGIN_MUTAION = gql(`
   mutation banana($input: LoginInput!) {
@@ -25,7 +31,26 @@ export const Login = () => {
     handleSubmit,
   } = useForm<ILoginForm>();
 
-  const [loginMutation, { data: resultData }] = useMutation(LOGIN_MUTAION);
+  const onCompleted = (data: BananaMutation) => {
+    console.log('🚀 | file: login.tsx:35 | data:', data);
+    const {
+      login: { ok, token },
+    } = data;
+    if (ok && token) {
+      localStorage.setItem(LOCALSTORAGE_TOKEN, token);
+      isLoggedInVar(true);
+    }
+  };
+
+  const [loginMutation, { data: resultData }] = useMutation<
+    BananaMutation,
+    BananaMutationVariables
+  >(LOGIN_MUTAION, {
+    onCompleted,
+  });
+
+  if (resultData?.login.token) {
+  }
 
   const onSubmit = (data: ILoginForm) => {
     const { email, password } = data;

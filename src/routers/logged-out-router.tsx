@@ -7,10 +7,10 @@ export const LoggedOutRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/create-account">
+        <Route path='/create-account'>
           <CreateAccount />
         </Route>
-        <Route path="/">
+        <Route path='/'>
           <Login />
         </Route>
       </Switch>
