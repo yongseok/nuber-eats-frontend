@@ -7,7 +7,6 @@ const ME_QUERY = gql`
       id
       email
       role
-      verified
     }
   }
 `;

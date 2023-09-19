@@ -7,7 +7,8 @@ import {
   BananaMutationVariables,
 } from '../__generated__/graphql';
 import { LOCALSTORAGE_TOKEN } from '../constants';
-import { isLoggedInVar } from '../apollo';
+import { authTokenVar, isLoggedInVar } from '../apollo';
+import { Link } from 'react-router-dom';
 
 const LOGIN_MUTAION = gql(`
   mutation banana($input: LoginInput!) {
@@ -38,6 +39,7 @@ export const Login = () => {
     } = data;
     if (ok && token) {
       localStorage.setItem(LOCALSTORAGE_TOKEN, token);
+      authTokenVar(token);
       isLoggedInVar(true);
     }
   };
@@ -110,6 +112,7 @@ export const Login = () => {
             </span>
           )}
         </form>
+        <Link to='/create-account'>Create Account</Link>
       </div>
     </div>
   );
